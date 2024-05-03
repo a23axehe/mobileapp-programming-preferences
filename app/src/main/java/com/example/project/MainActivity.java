@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
-    // in My MainActivity class
     private SharedPreferences myPreferenceRef;
     private SharedPreferences.Editor myPreferenceEditor;
 
@@ -22,16 +21,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // In onCreate()
-        myPreferenceRef = getPreferences(MODE_PRIVATE);
-        myPreferenceEditor = myPreferenceRef.edit();
-
-
-
-// Read a preference
-        TextView prefTextRef = new TextView(this);
-        prefTextRef = (TextView) findViewById(R.id.textview1);
-        prefTextRef.setText(myPreferenceRef.getString("MyAppPreferenceString", "No preference found."));
 
         // Define the button and set its onClickListener inside onCreate method
         Button secondActivityButton = findViewById(R.id.button);
@@ -43,6 +32,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        myPreferenceRef = getSharedPreferences("newPreferences", MODE_PRIVATE);
+        myPreferenceEditor = myPreferenceRef.edit();
+
+        // Display preferences
+        TextView prefTextRef=new TextView(this);
+        prefTextRef=(TextView)findViewById(R.id.prefText);
+        prefTextRef.setText(myPreferenceRef.getString("MyAppPreferenceString", "No preference found."));
+
 
     }
 }

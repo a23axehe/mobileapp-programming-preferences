@@ -24,6 +24,6 @@
         android:layout_below="@+id/prefButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/prefText"
+        android:id="@+id/prefText1"
         app:layout_constraintTop_toBottomOf="@id/prefButton"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

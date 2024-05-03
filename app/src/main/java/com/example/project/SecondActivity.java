@@ -15,9 +15,15 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-        // In onCreate()
-        myPreferenceRef = getPreferences(MODE_PRIVATE);
+
+        myPreferenceRef = getSharedPreferences("newPreferences", MODE_PRIVATE);
         myPreferenceEditor = myPreferenceRef.edit();
+
+
+        // Read a preference
+        TextView prefTextRef=new TextView(this);
+        prefTextRef=(TextView)findViewById(R.id.prefText1);
+        prefTextRef.setText(myPreferenceRef.getString("MyAppPreferenceString", "No preference found."));
     }
     public void savePref(View v){
         // Get the text
@@ -30,7 +36,7 @@ public class SecondActivity extends AppCompatActivity {
 
         // Display the new preference
         TextView prefTextRef=new TextView(this);
-        prefTextRef=(TextView)findViewById(R.id.prefText);
+        prefTextRef=(TextView)findViewById(R.id.prefText1);
         prefTextRef.setText(myPreferenceRef.getString("MyAppPreferenceString", "No preference found."));
 
         // Clear the EditText
